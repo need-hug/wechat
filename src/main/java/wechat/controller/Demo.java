@@ -4,7 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wechat.bean.StatusCode;
+import wechat.entity.SysConfig;
 import wechat.exception.ApiException;
+import wechat.wx.WeChatUtil;
 
 /**
  * @className: Demo
@@ -27,6 +29,14 @@ public class Demo {
 		int i = 0;
 		int b = i / 0;
 		return i/10;
+	}
+
+	@GetMapping("getToken")
+	public String getToken() {
+		SysConfig sysConfig = new SysConfig();
+		sysConfig.setWxAppId("wx56ce5ee9a458ceea");
+		sysConfig.setWxSecret("fcebf3aaa884ba00207faeb95220ba0e");
+		return WeChatUtil.getWhChatAccessToken(sysConfig);
 	}
 
 }
